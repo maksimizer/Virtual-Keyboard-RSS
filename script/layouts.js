@@ -693,10 +693,10 @@ const keysObj = {
       capsOnshift: 'm',
     },
     ru: {
-      low: 'о',
-      high: 'О',
-      capsOn: 'О',
-      capsOnshift: 'о',
+      low: 'ь',
+      high: 'Ь',
+      capsOn: 'Ь',
+      capsOnshift: 'ь',
     },
   },
   Comma: {
