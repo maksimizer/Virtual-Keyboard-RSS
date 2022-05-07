@@ -1,5 +1,5 @@
 const keysObj = {
-  tilda: {
+  Backquote: {
     en: {
       low: '`',
       high: '~',
@@ -13,7 +13,7 @@ const keysObj = {
       capsOnshift: 'ё',
     },
   },
-  Num1: {
+  Digit1: {
     en: {
       low: '1',
       high: '!',
@@ -27,7 +27,7 @@ const keysObj = {
       capsOnshift: '!',
     },
   },
-  Num2: {
+  Digit2: {
     en: {
       low: '2',
       high: '@',
@@ -41,7 +41,7 @@ const keysObj = {
       capsOnshift: '""',
     },
   },
-  Num3: {
+  Digit3: {
     en: {
       low: '3',
       high: '#',
@@ -55,7 +55,7 @@ const keysObj = {
       capsOnshift: '№',
     },
   },
-  Num4: {
+  Digit4: {
     en: {
       low: '4',
       high: '$',
@@ -69,7 +69,7 @@ const keysObj = {
       capsOnshift: ';',
     },
   },
-  Num5: {
+  Digit5: {
     en: {
       low: '5',
       high: '%',
@@ -83,7 +83,7 @@ const keysObj = {
       capsOnshift: '%',
     },
   },
-  Num6: {
+  Digit6: {
     en: {
       low: '6',
       high: '^',
@@ -97,7 +97,7 @@ const keysObj = {
       capsOnshift: ':',
     },
   },
-  Num7: {
+  Digit7: {
     en: {
       low: '7',
       high: '&',
@@ -111,7 +111,7 @@ const keysObj = {
       capsOnshift: '?',
     },
   },
-  Num8: {
+  Digit8: {
     en: {
       low: '8',
       high: '*',
@@ -125,7 +125,7 @@ const keysObj = {
       capsOnshift: '*',
     },
   },
-  Num9: {
+  Digit9: {
     en: {
       low: '9',
       high: '(',
@@ -139,7 +139,7 @@ const keysObj = {
       capsOnshift: '(',
     },
   },
-  Num0: {
+  Digit0: {
     en: {
       low: '0',
       high: ')',
@@ -153,7 +153,7 @@ const keysObj = {
       capsOnshift: ')',
     },
   },
-  minus: {
+  Minus: {
     en: {
       low: '-',
       high: '_',
@@ -167,7 +167,7 @@ const keysObj = {
       capsOnshift: '_',
     },
   },
-  equal: {
+  Equal: {
     en: {
       low: '=',
       high: '+',
@@ -181,7 +181,7 @@ const keysObj = {
       capsOnshift: '+',
     },
   },
-  backspace: {
+  Backspace: {
     en: {
       low: 'backspace',
       high: 'backspace',
@@ -195,7 +195,7 @@ const keysObj = {
       capsOnshift: 'backspace',
     },
   },
-  tab: {
+  Tab: {
     en: {
       low: 'tab',
       high: 'tab',
@@ -209,7 +209,7 @@ const keysObj = {
       capsOnshift: 'tab',
     },
   },
-  Q: {
+  KeyQ: {
     en: {
       low: 'q',
       high: 'Q',
@@ -223,7 +223,7 @@ const keysObj = {
       capsOnshift: 'й',
     },
   },
-  W: {
+  KeyW: {
     en: {
       low: 'w',
       high: 'W',
@@ -237,7 +237,7 @@ const keysObj = {
       capsOnshift: 'ц',
     },
   },
-  E: {
+  KeyE: {
     en: {
       low: 'e',
       high: 'E',
@@ -251,7 +251,7 @@ const keysObj = {
       capsOnshift: 'у',
     },
   },
-  R: {
+  KeyR: {
     en: {
       low: 'r',
       high: 'R',
@@ -265,7 +265,7 @@ const keysObj = {
       capsOnshift: 'к',
     },
   },
-  T: {
+  KeyT: {
     en: {
       low: 't',
       high: 'T',
@@ -279,7 +279,7 @@ const keysObj = {
       capsOnshift: 'е',
     },
   },
-  Y: {
+  KeyY: {
     en: {
       low: 'y',
       high: 'Y',
@@ -293,7 +293,7 @@ const keysObj = {
       capsOnshift: 'н',
     },
   },
-  U: {
+  KeyU: {
     en: {
       low: 'u',
       high: 'U',
@@ -307,7 +307,7 @@ const keysObj = {
       capsOnshift: 'г',
     },
   },
-  I: {
+  KeyI: {
     en: {
       low: 'i',
       high: 'I',
@@ -321,7 +321,7 @@ const keysObj = {
       capsOnshift: 'ш',
     },
   },
-  O: {
+  KeyO: {
     en: {
       low: 'o',
       high: 'O',
@@ -335,7 +335,7 @@ const keysObj = {
       capsOnshift: 'щ',
     },
   },
-  P: {
+  KeyP: {
     en: {
       low: 'p',
       high: 'P',
@@ -349,7 +349,7 @@ const keysObj = {
       capsOnshift: 'з',
     },
   },
-  leftFigBracket: {
+  BracketLeft: {
     en: {
       low: '[',
       high: '{',
@@ -363,7 +363,7 @@ const keysObj = {
       capsOnshift: 'х',
     },
   },
-  rightFigBracket: {
+  BracketRight: {
     en: {
       low: ']',
       high: '}',
@@ -377,7 +377,7 @@ const keysObj = {
       capsOnshift: 'ъ',
     },
   },
-  backslash: {
+  Backslash: {
     en: {
       low: '\\',
       high: '|',
@@ -391,7 +391,7 @@ const keysObj = {
       capsOnshift: '|',
     },
   },
-  delete: {
+  Delete: {
     en: {
       low: 'Del',
       high: 'Del',
@@ -405,7 +405,7 @@ const keysObj = {
       capsOnshift: 'Del',
     },
   },
-  capsLock: {
+  CapsLock: {
     en: {
       low: 'caps lock',
       high: 'caps lock',
@@ -419,7 +419,7 @@ const keysObj = {
       capsOnshift: 'caps lock',
     },
   },
-  A: {
+  KeyA: {
     en: {
       low: 'a',
       high: 'A',
@@ -433,7 +433,7 @@ const keysObj = {
       capsOnshift: 'ф',
     },
   },
-  S: {
+  KeyS: {
     en: {
       low: 's',
       high: 'S',
@@ -447,7 +447,7 @@ const keysObj = {
       capsOnshift: 'ы',
     },
   },
-  D: {
+  KeyD: {
     en: {
       low: 'd',
       high: 'D',
@@ -461,7 +461,7 @@ const keysObj = {
       capsOnshift: 'в',
     },
   },
-  F: {
+  KeyF: {
     en: {
       low: 'f',
       high: 'F',
@@ -475,7 +475,7 @@ const keysObj = {
       capsOnshift: 'а',
     },
   },
-  G: {
+  KeyG: {
     en: {
       low: 'g',
       high: 'G',
@@ -489,7 +489,7 @@ const keysObj = {
       capsOnshift: 'п',
     },
   },
-  H: {
+  KeyH: {
     en: {
       low: 'h',
       high: 'H',
@@ -503,7 +503,7 @@ const keysObj = {
       capsOnshift: 'р',
     },
   },
-  J: {
+  KeyJ: {
     en: {
       low: 'j',
       high: 'J',
@@ -517,7 +517,7 @@ const keysObj = {
       capsOnshift: 'о',
     },
   },
-  K: {
+  KeyK: {
     en: {
       low: 'k',
       high: 'K',
@@ -531,7 +531,7 @@ const keysObj = {
       capsOnshift: 'л',
     },
   },
-  L: {
+  KeyL: {
     en: {
       low: 'l',
       high: 'L',
@@ -545,7 +545,7 @@ const keysObj = {
       capsOnshift: 'д',
     },
   },
-  colon: {
+  Semicolon: {
     en: {
       low: ';',
       high: ':',
@@ -559,7 +559,7 @@ const keysObj = {
       capsOnshift: 'ж',
     },
   },
-  quote: {
+  Quote: {
     en: {
       low: "'",
       high: '"',
@@ -573,7 +573,7 @@ const keysObj = {
       capsOnshift: 'э',
     },
   },
-  enter: {
+  Enter: {
     en: {
       low: 'enter',
       high: 'enter',
@@ -587,7 +587,7 @@ const keysObj = {
       capsOnshift: 'enter',
     },
   },
-  shiftL: {
+  ShiftLeft: {
     en: {
       low: 'shift',
       high: 'shift',
@@ -601,7 +601,7 @@ const keysObj = {
       capsOnshift: 'shift',
     },
   },
-  Z: {
+  KeyZ: {
     en: {
       low: 'z',
       high: 'Z',
@@ -615,7 +615,7 @@ const keysObj = {
       capsOnshift: 'Я',
     },
   },
-  X: {
+  KeyX: {
     en: {
       low: 'x',
       high: 'X',
@@ -629,7 +629,7 @@ const keysObj = {
       capsOnshift: 'ч',
     },
   },
-  C: {
+  KeyC: {
     en: {
       low: 'c',
       high: 'C',
@@ -643,7 +643,7 @@ const keysObj = {
       capsOnshift: 'с',
     },
   },
-  V: {
+  KeyV: {
     en: {
       low: 'v',
       high: 'V',
@@ -657,7 +657,7 @@ const keysObj = {
       capsOnshift: 'м',
     },
   },
-  B: {
+  KeyB: {
     en: {
       low: 'b',
       high: 'B',
@@ -671,7 +671,7 @@ const keysObj = {
       capsOnshift: 'и',
     },
   },
-  N: {
+  KeyN: {
     en: {
       low: 'n',
       high: 'N',
@@ -685,7 +685,7 @@ const keysObj = {
       capsOnshift: 'т',
     },
   },
-  M: {
+  KeyM: {
     en: {
       low: 'm',
       high: 'M',
@@ -699,7 +699,7 @@ const keysObj = {
       capsOnshift: 'о',
     },
   },
-  comma: {
+  Comma: {
     en: {
       low: ',',
       high: '<',
@@ -713,7 +713,7 @@ const keysObj = {
       capsOnshift: 'б',
     },
   },
-  dot: {
+  Period: {
     en: {
       low: '.',
       high: '>',
@@ -727,7 +727,7 @@ const keysObj = {
       capsOnshift: 'ю',
     },
   },
-  slash: {
+  Slash: {
     en: {
       low: '/',
       high: '?',
@@ -741,7 +741,7 @@ const keysObj = {
       capsOnshift: ',',
     },
   },
-  up: {
+  ArrowUp: {
     en: {
       low: '↑',
       high: '↑',
@@ -755,7 +755,7 @@ const keysObj = {
       capsOnshift: '↑',
     },
   },
-  shiftR: {
+  ShiftRight: {
     en: {
       low: 'shift',
       high: 'shift',
@@ -769,7 +769,7 @@ const keysObj = {
       capsOnshift: 'shift',
     },
   },
-  ctrlL: {
+  ControlLeft: {
     en: {
       low: 'ctrl',
       high: 'ctrl',
@@ -783,7 +783,7 @@ const keysObj = {
       capsOnshift: 'ctrl',
     },
   },
-  win: {
+  MetaLeft: {
     en: {
       low: 'win',
       high: 'win',
@@ -797,7 +797,7 @@ const keysObj = {
       capsOnshift: 'win',
     },
   },
-  altL: {
+  AltLeft: {
     en: {
       low: 'alt',
       high: 'alt',
@@ -811,7 +811,7 @@ const keysObj = {
       capsOnshift: 'alt',
     },
   },
-  space: {
+  Space: {
     en: {
       low: ' ',
       high: ' ',
@@ -825,7 +825,7 @@ const keysObj = {
       capsOnshift: ' ',
     },
   },
-  altR: {
+  AltRight: {
     en: {
       low: 'alt',
       high: 'alt',
@@ -839,7 +839,7 @@ const keysObj = {
       capsOnshift: 'alt',
     },
   },
-  left: {
+  ArrowLeft: {
     en: {
       low: '←',
       high: '←',
@@ -853,7 +853,7 @@ const keysObj = {
       capsOnshift: '←',
     },
   },
-  down: {
+  ArrowDown: {
     en: {
       low: '↓',
       high: '↓',
@@ -867,7 +867,7 @@ const keysObj = {
       capsOnshift: '↓',
     },
   },
-  right: {
+  ArrowRight: {
     en: {
       low: '→',
       high: '→',
@@ -881,7 +881,7 @@ const keysObj = {
       capsOnshift: '→',
     },
   },
-  ctrlR: {
+  ControlRight: {
     en: {
       low: 'ctrl',
       high: 'ctrl',
