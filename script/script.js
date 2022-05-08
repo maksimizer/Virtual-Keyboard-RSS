@@ -71,6 +71,52 @@ function init() { //====================================== INIT ON LOADING PAGE
   wrapper.append(title, layoutInfo, textarea, keyboard); //====putting content to wrapper
   document.body.prepend(wrapper); //=====putting wraper to body before script tag
 };
+//get values arrays
+
+function getValuesLowArr () {
+  const valuesLowArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesLowArr.push(key[1].en.low);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesLowArr.push(key[1].ru.low);
+    });
+    return valuesLowArr;
+};
+function getValuesHighArr () {
+  const valuesHighArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesHighArr.push(key[1].en.high);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesHighArr.push(key[1].ru.high);
+    });
+    return valuesHighArr;
+};
+function getValuesCapsArr () {
+  const valuesCapsArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesCapsArr.push(key[1].en.capsOn);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesCapsArr.push(key[1].ru.capsOn);
+    });
+    return valuesCapsArr;
+};
+function getValuesCapsShiftArr () {
+  const valuesCapsShiftArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesCapsShiftArr.push(key[1].en.capsOnShift);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesCapsShiftArr.push(key[1].ru.capsOnShift);
+    });
+    return valuesCapsShiftArr;
+};
 
 function clickHandler (event) {   //=======================Click events
   const textarea = document.querySelector('.textarea');
@@ -80,22 +126,54 @@ function clickHandler (event) {   //=======================Click events
 //===== ckick on shift
   if (event.type === 'mousedown' && (event.currentTarget.classList.contains('ShiftLeft') || event.currentTarget.classList.contains('ShiftRight'))) {
     isShiftOn = true;
-    console.log(isShiftOn);
+    const valuesShiftArr = getValuesHighArr();
+    for (let i = 0; i < keysArr.length; i++) {
+      keysArr[i].textContent = valuesShiftArr[i];
+    };
   };
   if (event.type === 'mouseup' && (event.currentTarget.classList.contains('ShiftLeft') || event.currentTarget.classList.contains('ShiftRight'))) {
     isShiftOn = false;
-    console.log(isShiftOn);
+    const valuesLowArr = getValuesLowArr();
+    for (let i = 0; i < keysArr.length; i++) {
+      keysArr[i].textContent = valuesLowArr[i];
+    };
   }
 //======== click on caps
   if (event.type !== 'mouseup' && event.currentTarget.classList.contains('CapsLock')) {
     isCapsOn = !isCapsOn;
     event.currentTarget.classList.toggle('active');
-    console.log(`caps ${isCapsOn}`);
+    if (isCapsOn === true) {   
+      const valuesCapsArr = getValuesCapsArr();
+      for (let i = 0; i < keysArr.length; i++) {
+        keysArr[i].textContent = valuesCapsArr[i];
+      };
+    } else {
+      const valuesLowArr = getValuesLowArr();
+      for (let i = 0; i < keysArr.length; i++) {
+        keysArr[i].textContent = valuesLowArr[i];
+      };
+    };
   };
+//======== click shift when caps is on
+if (event.type === 'mousedown' && isCapsOn && (event.currentTarget.classList.contains('ShiftLeft') || event.currentTarget.classList.contains('ShiftRight'))) {
+  isShiftOn = true;
+  const valuesCapsShiftArr = getValuesCapsShiftArr();
+  for (let i = 0; i < keysArr.length; i++) {
+    keysArr[i].textContent = valuesCapsShiftArr[i];
+  };
+};
+if (event.type === 'mouseup' && isCapsOn && (event.currentTarget.classList.contains('ShiftLeft') || event.currentTarget.classList.contains('ShiftRight'))) {
+  isShiftOn = false;
+  const valuesCapsArr = getValuesCapsArr();
+  for (let i = 0; i < keysArr.length; i++) {
+    keysArr[i].textContent = valuesCapsArr[i];
+  };
+};
+
   //======= click on fn keys
   if (event.type === 'mousedown' && event.currentTarget.classList.contains('Tab')) textarea.value += '\t';
   if (event.type === 'mousedown' && event.currentTarget.classList.contains('Backspace')) {
-    if (textarea.selectionStart === textarea.selectionEnd) {
+    if (textarea.selectionStart === textarea.selectionEnd && cursorPosition > 0) {
       textarea.value = textarea.value.slice(0, cursorPosition - 1) + textarea.value.slice(cursorPosition, textarea.value.length);
       textarea.selectionStart = cursorPosition - 1;
       textarea.selectionEnd = cursorPosition - 1;
@@ -127,9 +205,19 @@ function clickHandler (event) {   //=======================Click events
       textarea.selectionStart = cursorPosition - 90;
       textarea.selectionEnd = cursorPosition - 90;
     };
+    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowUp') && cursorPosition < 90) {
+      cursorPosition = 0;
+      textarea.selectionStart = cursorPosition;
+      textarea.selectionEnd = cursorPosition;
+    };
     if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowDown') && cursorPosition <= textarea.value.length - 90) {
       textarea.selectionStart = cursorPosition + 90;
       textarea.selectionEnd = cursorPosition + 90;
+    };
+    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowDown') && cursorPosition > textarea.value.length - 90) {
+      cursorPosition = textarea.length - 1;
+      textarea.selectionStart = cursorPosition;
+      textarea.selectionEnd = cursorPosition;
     };
 //========click on keys (typing)
   if (event.type === 'mousedown'
