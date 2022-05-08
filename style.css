@@ -23,6 +23,7 @@ html {
     display: block;
     width: 1000px;
     height: 250px;
+    font-size: 20px;
 }
 .keyboard {
     width: 1000px;
@@ -57,6 +58,11 @@ html {
     transform: scale(0.95);
     color: black;
 } 
+.active {
+    background: rgb(122, 239, 255);
+    transform: scale(0.95);
+    color: black;
+}
 .Backspace {
     width: 126px;
 }
