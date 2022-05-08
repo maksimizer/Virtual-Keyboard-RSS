@@ -4,6 +4,53 @@ let layout = localStorage.getItem('layout') || 'en';
 let isShiftOn = false;
 let isCapsOn = false;
 
+//get key values arrays
+
+function getValuesLowArr () {
+  const valuesLowArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesLowArr.push(key[1].en.low);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesLowArr.push(key[1].ru.low);
+    });
+    return valuesLowArr;
+};
+function getValuesHighArr () {
+  const valuesHighArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesHighArr.push(key[1].en.high);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesHighArr.push(key[1].ru.high);
+    });
+    return valuesHighArr;
+};
+function getValuesCapsArr () {
+  const valuesCapsArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesCapsArr.push(key[1].en.capsOn);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesCapsArr.push(key[1].ru.capsOn);
+    });
+    return valuesCapsArr;
+};
+function getValuesCapsShiftArr () {
+  const valuesCapsShiftArr = [];
+layout === 'en'
+    ? Object.entries(keysObj).forEach((key) => {
+      valuesCapsShiftArr.push(key[1].en.capsOnShift);
+    })
+    : Object.entries(keysObj).forEach((key) => {
+      valuesCapsShiftArr.push(key[1].ru.capsOnShift);
+    });
+    return valuesCapsShiftArr;
+};
+
 function getKeysArr() { //= =============================GETTING DIVS
   const keyElementsArr = [];
   const valuesArr = [];
@@ -71,56 +118,9 @@ function init() { //====================================== INIT ON LOADING PAGE
   wrapper.append(title, layoutInfo, textarea, keyboard); //====putting content to wrapper
   document.body.prepend(wrapper); //=====putting wraper to body before script tag
 };
-//get values arrays
-
-function getValuesLowArr () {
-  const valuesLowArr = [];
-layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
-      valuesLowArr.push(key[1].en.low);
-    })
-    : Object.entries(keysObj).forEach((key) => {
-      valuesLowArr.push(key[1].ru.low);
-    });
-    return valuesLowArr;
-};
-function getValuesHighArr () {
-  const valuesHighArr = [];
-layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
-      valuesHighArr.push(key[1].en.high);
-    })
-    : Object.entries(keysObj).forEach((key) => {
-      valuesHighArr.push(key[1].ru.high);
-    });
-    return valuesHighArr;
-};
-function getValuesCapsArr () {
-  const valuesCapsArr = [];
-layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
-      valuesCapsArr.push(key[1].en.capsOn);
-    })
-    : Object.entries(keysObj).forEach((key) => {
-      valuesCapsArr.push(key[1].ru.capsOn);
-    });
-    return valuesCapsArr;
-};
-function getValuesCapsShiftArr () {
-  const valuesCapsShiftArr = [];
-layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
-      valuesCapsShiftArr.push(key[1].en.capsOnShift);
-    })
-    : Object.entries(keysObj).forEach((key) => {
-      valuesCapsShiftArr.push(key[1].ru.capsOnShift);
-    });
-    return valuesCapsShiftArr;
-};
 
 function clickHandler (event) {   //=======================Click events
   const textarea = document.querySelector('.textarea');
-  textarea.focus();
   let cursorPosition = textarea.selectionStart;
 
 //===== ckick on shift
@@ -240,8 +240,6 @@ if (event.type === 'mouseup' && isCapsOn && (event.currentTarget.classList.conta
     const text = event.currentTarget.textContent;
     textarea.setRangeText(text, cursorPosition, cursorPosition, 'end');
   };
-
-  
 };
 
 
