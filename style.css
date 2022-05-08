@@ -5,6 +5,7 @@
 }
 html {
     font-size: 20px;
+    background-color: rgba(253, 231, 184, 0.74);
 }
 .wrapper {
     display: flex;
@@ -12,9 +13,7 @@ html {
     justify-content: center;
     align-items: center;
     gap: 20px;
-}
-.title {
-    margin-top: 40px;
+    height: 100vh;
 }
 .info {
     font-weight: bold;
@@ -23,11 +22,9 @@ html {
 .textarea {
     display: block;
     width: 1000px;
-    height: 200px;
-    margin-top: 30px;
+    height: 250px;
 }
 .keyboard {
-    margin-top: 30px;
     width: 1000px;
     background: #4d4c4cd8;
     border-radius: 8px;
