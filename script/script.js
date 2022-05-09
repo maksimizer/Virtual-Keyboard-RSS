@@ -79,17 +79,15 @@ const keysArr = getKeysArr();
 function init() { //====================================== INIT ON LOADING PAGE 
   const wrapper = document.createElement('div'); //=================PAGE CONTAINER
   wrapper.classList.add('wrapper');
-
+  let currentLayout = layout;
   const title = document.createElement('h1');  //====================title
-  title.textContent = 'Virtual Keyboard for Windows OS';
   title.classList.add('title');
+  title.textContent = 'Virtual keyboard for Windows OS'
 
   const layoutInfo = document.createElement('p'); //=============Current layout info
   layoutInfo.classList.add('info');
-  let currentLayout = layout;
-  currentLayout === 'en'?
-  layoutInfo.textContent = `Current layout: ${layout}. Press Left Shift + Left Alt keys to change layout.` :
-  layoutInfo.textContent = `Текущая раскладка: ${layout}. Нажмите левые Shift + Alt чтобы сменить раскладку.`;
+  layoutInfo.textContent = `Current layout: ${layout}. Press Left Shift + Left Alt keys to change layout.`;
+
   
   const textarea = document.createElement('textarea'); //=========textarea
   textarea.classList.add('textarea');
@@ -197,33 +195,7 @@ if (event.type === 'mouseup' && isCapsOn && (event.currentTarget.classList.conta
     textarea.selectionStart = cursorPosition;
     textarea.selectionEnd = cursorPosition;
   };
-    //=========Click on arrows
-    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowLeft') && cursorPosition > 0) {
-      textarea.selectionStart = cursorPosition - 1;
-      textarea.selectionEnd = cursorPosition - 1;
-    };
-    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowRight') && cursorPosition < textarea.value.length) {
-      textarea.selectionStart = cursorPosition + 1;
-      textarea.selectionEnd = cursorPosition + 1;
-    };
-    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowUp') && cursorPosition >= 90) {
-      textarea.selectionStart = cursorPosition - 90;
-      textarea.selectionEnd = cursorPosition - 90;
-    };
-    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowUp') && cursorPosition < 90) {
-      cursorPosition = 0;
-      textarea.selectionStart = cursorPosition;
-      textarea.selectionEnd = cursorPosition;
-    };
-    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowDown') && cursorPosition <= textarea.value.length - 90) {
-      textarea.selectionStart = cursorPosition + 90;
-      textarea.selectionEnd = cursorPosition + 90;
-    };
-    if (event.type === 'mousedown' && event.currentTarget.classList.contains('ArrowDown') && cursorPosition > textarea.value.length - 90) {
-      cursorPosition = textarea.length - 1;
-      textarea.selectionStart = cursorPosition;
-      textarea.selectionEnd = cursorPosition;
-    };
+
 //========click on keys (typing)
   if (event.type === 'mousedown'
     && !event.currentTarget.classList.contains('Tab')
@@ -237,10 +209,6 @@ if (event.type === 'mouseup' && isCapsOn && (event.currentTarget.classList.conta
     && !event.currentTarget.classList.contains('MetaLeft')
     && !event.currentTarget.classList.contains('AltLeft')
     && !event.currentTarget.classList.contains('AltRight')
-    && !event.currentTarget.classList.contains('ArrowLeft')
-    && !event.currentTarget.classList.contains('ArrowRight')
-    && !event.currentTarget.classList.contains('ArrowUp')
-    && !event.currentTarget.classList.contains('ArrowDown')
     && !event.currentTarget.classList.contains('ControlRight')) {
     const text = event.currentTarget.textContent;
     textarea.setRangeText(text, cursorPosition, cursorPosition, 'end');
@@ -253,6 +221,13 @@ const pressHandler = (event) => {
   const textarea = document.querySelector('.textarea');
   let cursorPosition = textarea.selectionStart;
   textarea.focus();
+  if (event.type === 'keydown' && event.shiftKey && event.altKey) {
+    if (layout === 'en') {
+      layout = 'ru';
+    } else {
+      layout = 'en';
+    };
+  };
   
   //===== press shift
   if (event.type === 'keydown' && (event.code === 'ShiftLeft' || event.code === 'ShiftRight')) {
@@ -327,33 +302,7 @@ if (event.type === 'keyup' && isCapsOn && (event.code === 'ShiftLeft' || event.c
     textarea.selectionStart = cursorPosition;
     textarea.selectionEnd = cursorPosition;
   };
-    //=========press arrows
-    if (event.type === 'keydown' && event.code === 'ArrowLeft' && cursorPosition > 0) {
-      textarea.selectionStart = cursorPosition - 1;
-      textarea.selectionEnd = cursorPosition - 1;
-    };
-    if (event.type === 'keydown' && event.code === 'ArrowRight' && cursorPosition < textarea.value.length) {
-      textarea.selectionStart = cursorPosition + 1;
-      textarea.selectionEnd = cursorPosition + 1;
-    };
-    if (event.type === 'keydown' && event.code === 'ArrowUp' && cursorPosition >= 90) {
-      textarea.selectionStart = cursorPosition - 90;
-      textarea.selectionEnd = cursorPosition - 90;
-    };
-    if (event.type === 'keydown' && event.code === 'ArrowUp' && cursorPosition < 90) {
-      cursorPosition = 0;
-      textarea.selectionStart = cursorPosition;
-      textarea.selectionEnd = cursorPosition;
-    };
-    if (event.type === 'keydown' && event.code === 'ArrowDown' && cursorPosition <= textarea.value.length - 90) {
-      textarea.selectionStart = cursorPosition + 90;
-      textarea.selectionEnd = cursorPosition + 90;
-    };
-    if (event.type === 'keydown' && event.code === 'ArrowDown' && cursorPosition > textarea.value.length - 90) {
-      cursorPosition = textarea.length - 1;
-      textarea.selectionStart = cursorPosition;
-      textarea.selectionEnd = cursorPosition;
-    };
+    
 //========press keys (typing)
   if (event.type === 'keydown'
     && event.code !== 'Tab'
@@ -367,10 +316,6 @@ if (event.type === 'keyup' && isCapsOn && (event.code === 'ShiftLeft' || event.c
     && event.code !== 'MetaLeft'
     && event.code !== 'AltLeft'
     && event.code !== 'AltRight'
-    && event.code !== 'ArrowLeft'
-    && event.code !== 'ArrowRight'
-    && event.code !== 'ArrowUp'
-    && event.code !== 'ArrowDown'
     && event.code !== 'ControlRight') {
     for (let i = 0; i < keysArr.length; i++) {
       if (keysArr[i].classList.contains(event.code)) {
@@ -395,6 +340,7 @@ if (event.type === 'keyup' && event.code !== 'CapsLock') {
     };
   };
 }; 
+
 
 
 };
