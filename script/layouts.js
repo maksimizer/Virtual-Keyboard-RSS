@@ -612,7 +612,7 @@ const keysObj = {
       low: 'я',
       high: 'Я',
       capsOn: 'Я',
-      capsOnShift: 'Я',
+      capsOnShift: 'я',
     },
   },
   KeyX: {

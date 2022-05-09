@@ -242,11 +242,26 @@ const pressHandler = (event) => {
   const textarea = document.querySelector('.textarea');
   const cursorPosition = textarea.selectionStart;
   textarea.focus();
+
+  //= ========CHANGE LAYOUT
   if (event.type === 'keydown' && event.shiftKey && event.altKey) {
     if (layout === 'en') {
       layout = 'ru';
     } else {
       layout = 'en';
+    }
+  }
+  if (event.type === 'keydown' && (event.code === 'AltLeft' || event.code === 'AltRight') && isShiftOn) {
+    if (isCapsOn) {
+      const valuesCapsShiftArr = getValuesCapsShiftArr();
+      for (let i = 0; i < keysArr.length; i += 1) {
+        keysArr[i].textContent = valuesCapsShiftArr[i];
+      }
+    } else {
+      const valuesHighArr = getValuesHighArr();
+      for (let i = 0; i < keysArr.length; i += 1) {
+        keysArr[i].textContent = valuesHighArr[i];
+      }
     }
   }
 
