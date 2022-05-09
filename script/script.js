@@ -71,9 +71,9 @@ function getKeysArr() { //= =============================GETTING DIVS
   // CREATE DIVS WITH TEXT CONTENT ARR
   for (let i = 0; i < keyElementsArr.length; i++) {
     keyElementsArr[i].textContent = valuesArr[i];
-  }
+  };
   return keyElementsArr;
-}
+};
 const keysArr = getKeysArr();
 
 function init() { //====================================== INIT ON LOADING PAGE 
@@ -122,6 +122,7 @@ function init() { //====================================== INIT ON LOADING PAGE
 function clickHandler (event) {   //=======================Click events
   const textarea = document.querySelector('.textarea');
   let cursorPosition = textarea.selectionStart;
+  textarea.focus();
 
 //===== ckick on shift
   if (event.type === 'mousedown' && (event.currentTarget.classList.contains('ShiftLeft') || event.currentTarget.classList.contains('ShiftRight'))) {
@@ -137,7 +138,7 @@ function clickHandler (event) {   //=======================Click events
     for (let i = 0; i < keysArr.length; i++) {
       keysArr[i].textContent = valuesLowArr[i];
     };
-  }
+  };
 //======== click on caps
   if (event.type !== 'mouseup' && event.currentTarget.classList.contains('CapsLock')) {
     isCapsOn = !isCapsOn;
@@ -171,7 +172,9 @@ if (event.type === 'mouseup' && isCapsOn && (event.currentTarget.classList.conta
 };
 
   //======= click on fn keys
-  if (event.type === 'mousedown' && event.currentTarget.classList.contains('Tab')) textarea.value += '\t';
+  if (event.type === 'mousedown' && event.currentTarget.classList.contains('Tab')) {
+    textarea.value += '\t';
+  };
   if (event.type === 'mousedown' && event.currentTarget.classList.contains('Backspace')) {
     if (textarea.selectionStart === textarea.selectionEnd && cursorPosition > 0) {
       textarea.value = textarea.value.slice(0, cursorPosition - 1) + textarea.value.slice(cursorPosition, textarea.value.length);
@@ -184,7 +187,9 @@ if (event.type === 'mouseup' && isCapsOn && (event.currentTarget.classList.conta
       textarea.selectionEnd = cursorPosition;
     };
   };
-  if (event.type === 'mousedown' && event.currentTarget.classList.contains('Enter')) textarea.value += '\n';
+  if (event.type === 'mousedown' && event.currentTarget.classList.contains('Enter')) {
+    textarea.value += '\n';
+  };
   if (event.type === 'mousedown' && event.currentTarget.classList.contains('Delete')) {
     textarea.selectionStart === textarea.selectionEnd ? 
     textarea.value = textarea.value.slice(0, cursorPosition) + textarea.value.slice(cursorPosition + 1, textarea.value.length) :
@@ -242,6 +247,158 @@ if (event.type === 'mouseup' && isCapsOn && (event.currentTarget.classList.conta
   };
 };
 
+// ===================PRESS EVENTS
+const pressHandler = (event) => {
+  event.preventDefault();
+  const textarea = document.querySelector('.textarea');
+  let cursorPosition = textarea.selectionStart;
+  textarea.focus();
+  
+  //===== press shift
+  if (event.type === 'keydown' && (event.code === 'ShiftLeft' || event.code === 'ShiftRight')) {
+    isShiftOn = true;
+    const valuesShiftArr = getValuesHighArr();
+    for (let i = 0; i < keysArr.length; i++) {
+      keysArr[i].textContent = valuesShiftArr[i];
+    };
+  };
+  if (event.type === 'keyup' && (event.code === 'ShiftLeft' || event.code === 'ShiftRight')) {
+    isShiftOn = false;
+    const valuesLowArr = getValuesLowArr();
+    for (let i = 0; i < keysArr.length; i++) {
+      keysArr[i].textContent = valuesLowArr[i];
+    };
+  };
+//======== press caps
+  if (event.type !== 'keyup' && event.code === 'CapsLock') {
+    isCapsOn = !isCapsOn;
+    document.querySelector('.CapsLock').classList.toggle('active');
+    if (isCapsOn === true) {   
+      const valuesCapsArr = getValuesCapsArr();
+      for (let i = 0; i < keysArr.length; i++) {
+        keysArr[i].textContent = valuesCapsArr[i];
+      };
+    } else {
+      const valuesLowArr = getValuesLowArr();
+      for (let i = 0; i < keysArr.length; i++) {
+        keysArr[i].textContent = valuesLowArr[i];
+      };
+    };
+  };
+//======== press shift when caps is on
+if (event.type === 'keydown' && isCapsOn && (event.code === 'ShiftLeft' || event.code === 'ShiftRight')) {
+  isShiftOn = true;
+  const valuesCapsShiftArr = getValuesCapsShiftArr();
+  for (let i = 0; i < keysArr.length; i++) {
+    keysArr[i].textContent = valuesCapsShiftArr[i];
+  };
+};
+if (event.type === 'keyup' && isCapsOn && (event.code === 'ShiftLeft' || event.code === 'ShiftRight')) {
+  isShiftOn = false;
+  const valuesCapsArr = getValuesCapsArr();
+  for (let i = 0; i < keysArr.length; i++) {
+    keysArr[i].textContent = valuesCapsArr[i];
+  };
+};
 
+  //======= press fn keys
+  if (event.type === 'keydown' && event.code === 'Tab') {
+    textarea.value += '\t';
+  };
+  if (event.type === 'keydown' && event.code === 'Backspace') {
+    if (textarea.selectionStart === textarea.selectionEnd && cursorPosition > 0) {
+      textarea.value = textarea.value.slice(0, cursorPosition - 1) + textarea.value.slice(cursorPosition, textarea.value.length);
+      textarea.selectionStart = cursorPosition - 1;
+      textarea.selectionEnd = cursorPosition - 1;
+    };
+    if (textarea.selectionStart !== textarea.selectionEnd) {
+      textarea.value = textarea.value.slice(0, textarea.selectionStart) + textarea.value.slice(textarea.selectionEnd, textarea.value.length);
+      textarea.selectionStart = cursorPosition;
+      textarea.selectionEnd = cursorPosition;
+    };
+  };
+  if (event.type === 'keydown' && event.code === 'Enter') {
+    textarea.value += '\n';
+  };
+  if (event.type === 'keydown' && event.code === 'Delete') {
+    textarea.selectionStart === textarea.selectionEnd ? 
+    textarea.value = textarea.value.slice(0, cursorPosition) + textarea.value.slice(cursorPosition + 1, textarea.value.length) :
+    textarea.value = textarea.value.slice(0, textarea.selectionStart) + textarea.value.slice(textarea.selectionEnd, textarea.value.length);
+    textarea.selectionStart = cursorPosition;
+    textarea.selectionEnd = cursorPosition;
+  };
+    //=========press arrows
+    if (event.type === 'keydown' && event.code === 'ArrowLeft' && cursorPosition > 0) {
+      textarea.selectionStart = cursorPosition - 1;
+      textarea.selectionEnd = cursorPosition - 1;
+    };
+    if (event.type === 'keydown' && event.code === 'ArrowRight' && cursorPosition < textarea.value.length) {
+      textarea.selectionStart = cursorPosition + 1;
+      textarea.selectionEnd = cursorPosition + 1;
+    };
+    if (event.type === 'keydown' && event.code === 'ArrowUp' && cursorPosition >= 90) {
+      textarea.selectionStart = cursorPosition - 90;
+      textarea.selectionEnd = cursorPosition - 90;
+    };
+    if (event.type === 'keydown' && event.code === 'ArrowUp' && cursorPosition < 90) {
+      cursorPosition = 0;
+      textarea.selectionStart = cursorPosition;
+      textarea.selectionEnd = cursorPosition;
+    };
+    if (event.type === 'keydown' && event.code === 'ArrowDown' && cursorPosition <= textarea.value.length - 90) {
+      textarea.selectionStart = cursorPosition + 90;
+      textarea.selectionEnd = cursorPosition + 90;
+    };
+    if (event.type === 'keydown' && event.code === 'ArrowDown' && cursorPosition > textarea.value.length - 90) {
+      cursorPosition = textarea.length - 1;
+      textarea.selectionStart = cursorPosition;
+      textarea.selectionEnd = cursorPosition;
+    };
+//========press keys (typing)
+  if (event.type === 'keydown'
+    && event.code !== 'Tab'
+    && event.code !== 'Backspace'
+    && event.code !== 'Delete'
+    && event.code !== 'CapsLock'
+    && event.code !== 'Enter'
+    && event.code !== 'ShiftLeft'
+    && event.code !== 'ShiftRight'
+    && event.code !== 'ControlLeft'
+    && event.code !== 'MetaLeft'
+    && event.code !== 'AltLeft'
+    && event.code !== 'AltRight'
+    && event.code !== 'ArrowLeft'
+    && event.code !== 'ArrowRight'
+    && event.code !== 'ArrowUp'
+    && event.code !== 'ArrowDown'
+    && event.code !== 'ControlRight') {
+    for (let i = 0; i < keysArr.length; i++) {
+      if (keysArr[i].classList.contains(event.code)) {
+        const text = keysArr[i].textContent;
+        textarea.setRangeText(text, cursorPosition, cursorPosition, 'end');
+      };
+    };
+
+  };
+//========pressed key animation
+if (event.type === 'keydown' && event.code !== 'CapsLock') {
+  for (let i = 0; i < keysArr.length; i++) {
+    if (keysArr[i].classList.contains(event.code)) {
+      keysArr[i].classList.add('active');
+    };
+  };
+};
+if (event.type === 'keyup' && event.code !== 'CapsLock') {
+  for (let i = 0; i < keysArr.length; i++) {
+    if (keysArr[i].classList.contains(event.code)) {
+      keysArr[i].classList.remove('active');
+    };
+  };
+}; 
+
+
+};
+window.addEventListener('keydown', pressHandler);
+window.addEventListener('keyup', pressHandler);
 window.addEventListener('DOMContentLoaded', init);
 window.addEventListener('beforeunload', () => localStorage.setItem('layout', layout));

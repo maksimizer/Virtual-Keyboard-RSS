@@ -55,12 +55,12 @@ html {
 }
 .key:active {
     background: rgb(122, 239, 255);
-    transform: scale(0.95);
+    transform: scale(0.8);
     color: black;
 } 
 .active {
     background: rgb(122, 239, 255);
-    transform: scale(0.95);
+    transform: scale(0.8);
     color: black;
 }
 .Backspace {
