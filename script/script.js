@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import keysObj from './layouts.js';
 
 let layout = localStorage.getItem('layout') || 'en';
@@ -9,46 +8,55 @@ let isCapsOn = false;
 
 const getValuesLowArr = () => {
   const valuesLowArr = [];
-  layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
+  if (layout === 'en') {
+    Object.entries(keysObj).forEach((key) => {
       valuesLowArr.push(key[1].en.low);
-    })
-    : Object.entries(keysObj).forEach((key) => {
+    });
+  } else {
+    Object.entries(keysObj).forEach((key) => {
       valuesLowArr.push(key[1].ru.low);
     });
+  }
   return valuesLowArr;
 };
 const getValuesHighArr = () => {
   const valuesHighArr = [];
-  layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
+  if (layout === 'en') {
+    Object.entries(keysObj).forEach((key) => {
       valuesHighArr.push(key[1].en.high);
-    })
-    : Object.entries(keysObj).forEach((key) => {
+    });
+  } else {
+    Object.entries(keysObj).forEach((key) => {
       valuesHighArr.push(key[1].ru.high);
     });
+  }
   return valuesHighArr;
 };
 const getValuesCapsArr = () => {
   const valuesCapsArr = [];
-  layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
+  if (layout === 'en') {
+    Object.entries(keysObj).forEach((key) => {
       valuesCapsArr.push(key[1].en.capsOn);
-    })
-    : Object.entries(keysObj).forEach((key) => {
+    });
+  } else {
+    Object.entries(keysObj).forEach((key) => {
       valuesCapsArr.push(key[1].ru.capsOn);
     });
+  }
+
   return valuesCapsArr;
 };
 const getValuesCapsShiftArr = () => {
   const valuesCapsShiftArr = [];
-  layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
+  if (layout === 'en') {
+    Object.entries(keysObj).forEach((key) => {
       valuesCapsShiftArr.push(key[1].en.capsOnShift);
-    })
-    : Object.entries(keysObj).forEach((key) => {
+    });
+  } else {
+    Object.entries(keysObj).forEach((key) => {
       valuesCapsShiftArr.push(key[1].ru.capsOnShift);
     });
+  }
   return valuesCapsShiftArr;
 };
 
@@ -56,19 +64,21 @@ const getKeysArr = () => { //= =============================GETTING DIVS
   const keyElementsArr = [];
   const valuesArr = [];
   // CREATE KEY DIVS ARR
-  for (const key in keysObj) {
+  Object.keys(keysObj).forEach((key) => {
     const keyElement = document.createElement('div');
     keyElement.classList.add('key', key);
     keyElementsArr.push(keyElement);
-  }
+  });
   // CREATE DIVS TEXT CONTENT ARR
-  layout === 'en'
-    ? Object.entries(keysObj).forEach((key) => {
+  if (layout === 'en') {
+    Object.entries(keysObj).forEach((key) => {
       valuesArr.push(key[1].en.low);
-    })
-    : Object.entries(keysObj).forEach((key) => {
+    });
+  } else {
+    Object.entries(keysObj).forEach((key) => {
       valuesArr.push(key[1].ru.low);
     });
+  }
   // CREATE DIVS WITH TEXT CONTENT ARR
   for (let i = 0; i < keyElementsArr.length; i += 1) {
     keyElementsArr[i].textContent = valuesArr[i];
@@ -95,8 +105,10 @@ const clickHandler = (event) => { //= ======================Click events
   || event.currentTarget.classList.contains('ShiftRight'))) {
     isShiftOn = false;
     const valuesLowArr = getValuesLowArr();
-    for (let i = 0; i < keysArr.length; i += 1) {
-      keysArr[i].textContent = valuesLowArr[i];
+    if (!isShiftOn) {
+      for (let i = 0; i < keysArr.length; i += 1) {
+        keysArr[i].textContent = valuesLowArr[i];
+      }
     }
   }
   //= ======= click on caps
@@ -155,11 +167,13 @@ const clickHandler = (event) => { //= ======================Click events
     textarea.value += '\n';
   }
   if (event.type === 'mousedown' && event.currentTarget.classList.contains('Delete')) {
-    textarea.selectionStart === textarea.selectionEnd
-      ? textarea.value = textarea.value.slice(0, cursorPosition)
-      + textarea.value.slice(cursorPosition + 1, textarea.value.length)
-      : textarea.value = textarea.value.slice(0, textarea.selectionStart)
+    if (textarea.selectionStart === textarea.selectionEnd) {
+      textarea.value = textarea.value.slice(0, cursorPosition)
+      + textarea.value.slice(cursorPosition + 1, textarea.value.length);
+    } else {
+      textarea.value = textarea.value.slice(0, textarea.selectionStart)
       + textarea.value.slice(textarea.selectionEnd, textarea.value.length);
+    }
     textarea.selectionStart = cursorPosition;
     textarea.selectionEnd = cursorPosition;
   }
@@ -186,7 +200,6 @@ const clickHandler = (event) => { //= ======================Click events
 const init = () => { //= ===================================== INIT ON LOADING PAGE
   const wrapper = document.createElement('div'); //= ================PAGE CONTAINER
   wrapper.classList.add('wrapper');
-  const currentLayout = layout;
   const title = document.createElement('h1'); //= ===================title
   title.classList.add('title');
   title.textContent = 'Virtual keyboard for Windows OS';
@@ -306,11 +319,13 @@ const pressHandler = (event) => {
     textarea.value += '\n';
   }
   if (event.type === 'keydown' && event.code === 'Delete') {
-    textarea.selectionStart === textarea.selectionEnd
-      ? textarea.value = textarea.value.slice(0, cursorPosition)
-      + textarea.value.slice(cursorPosition + 1, textarea.value.length)
-      : textarea.value = textarea.value.slice(0, textarea.selectionStart)
+    if (textarea.selectionStart === textarea.selectionEnd) {
+      textarea.value = textarea.value.slice(0, cursorPosition)
+      + textarea.value.slice(cursorPosition + 1, textarea.value.length);
+    } else {
+      textarea.value = textarea.value.slice(0, textarea.selectionStart)
       + textarea.value.slice(textarea.selectionEnd, textarea.value.length);
+    }
     textarea.selectionStart = cursorPosition;
     textarea.selectionEnd = cursorPosition;
   }
